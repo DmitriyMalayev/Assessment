@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assessment</title>
+  </head>
+
+  <body>
+    <h1></h1>
+    <h2></h2>
+    <h3></h3>
+    <h4></h4>
+    <h5></h5>
+    <h6></h6>
+    <div class="assessment">
+      <p>
+        This is an assessment. Select the button below using the tab key on your
+        keyboard.
+      </p>
+      <button id="btn">Click Me</button>
+    </div>
+    <br />
+    What's the first number?
+    <input type="text" id="first_number" name="first_number" />
+    <br />
+    <br />
+    What's the second number?
+    <input type="text" id="second_number" name="second_number" />
+    <br />
+    <br />
+    <strong> Result :</strong>
+    <br />
+    <input type="text" id="result" name="result" />
+    <br />
+    <button id="total_button">View The Result</button>
+
+    <br />
+    <button id="start_countdown">Start Countdown</button>
+
+    <script type="text/javascript">
+      let buttonSelector = document.getElementById("btn");
+      buttonSelector.addEventListener("click", function () {
+        buttonSelector.textContent = "I was clicked";
+      });
+      let allHeadings = document
+        .querySelectorAll("h1, h2, h3, h4, h5, h6")
+        .forEach((e) => e.setAttribute("role", "presentation"));
+
+      let totalButton = document
+        .getElementById("total_button")
+        .addEventListener("click", function () {
+          let firstNumber = parseInt(
+            document.getElementById("first_number").value
+          );
+          let secondNumber = parseInt(
+            document.getElementById("second_number").value
+          );
+          let total = firstNumber + secondNumber;
+          document.getElementById("result").value = total;
+          let totalSeconds = total * 60;
+
+          let startedCountdown = document
+            .getElementById("start_countdown")
+            .addEventListener("click", function () {
+              let interval = setInterval(function () {
+                console.log(totalSeconds);
+                totalSeconds--;
+                if (totalSeconds < 0) {
+                  console.log("The number is now 0");
+                  clearInterval(interval);
+                }
+              }, 1000);
+            });
+        });
+    </script>
+  </body>
+</html>
